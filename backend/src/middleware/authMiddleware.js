@@ -1,8 +1,6 @@
-require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const pool = require("../db/pool");
 
-// Secret key for JWT (use environment variables for security)
 const JWT_SECRET = process.env.JWT_SECRET || "your_default_jwt_secret_key";
 
 // Middleware to verify JWT
