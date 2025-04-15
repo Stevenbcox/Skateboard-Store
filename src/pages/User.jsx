@@ -1,76 +1,47 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const AuthForm = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-  });
-  const [isRegistering, setIsRegistering] = useState(false);
+const User = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    const url = isRegistering
-      ? "http://localhost:5000/register"
-      : "http://localhost:5000/login";
-
     try {
-      const response = await axios.post(url, formData);
-      alert(response.data.message);
+      const response = await axios.post("http://localhost:5000/auth/login", {
+        email,
+        password,
+      });
+      setMessage(response.data.message);
+      console.log("Token:", response.data.token); // Save the token for future requests
     } catch (error) {
-      alert(error.response.data.message);
+      setMessage(error.response?.data?.message || "An error occurred");
     }
   };
 
   return (
     <div>
-      <h2>{isRegistering ? "Register" : "Login"}</h2>
-      <form onSubmit={handleSubmit}>
-        {isRegistering && (
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleInputChange}
-            required
-          />
-        )}
+      <h1>Login</h1>
+      <form onSubmit={handleLogin}>
         <input
           type="email"
-          name="email"
           placeholder="Email"
-          value={formData.email}
-          onChange={handleInputChange}
-          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
-          name="password"
           placeholder="Password"
-          value={formData.password}
-          onChange={handleInputChange}
-          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">{isRegistering ? "Register" : "Login"}</button>
+        <button type="submit">Login</button>
       </form>
-      <button onClick={() => setIsRegistering(!isRegistering)}>
-        {isRegistering
-          ? "Already have an account? Login"
-          : "Don't have an account? Register"}
-      </button>
+      {message && <p>{message}</p>}
     </div>
   );
 };
 
-export default AuthForm;
+export default User;
