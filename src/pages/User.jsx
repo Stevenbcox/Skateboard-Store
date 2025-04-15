@@ -22,24 +22,28 @@ const User = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+    <div className="user-container">
+      <h1 className="user-title">Login</h1>
+      <form onSubmit={handleLogin} className="user-form">
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="user-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="user-input"
         />
-        <button type="submit">Login</button>
+        <button type="submit" className="user-button">
+          Login
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="user-message">{message}</p>}
     </div>
   );
 };

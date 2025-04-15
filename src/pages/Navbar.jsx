@@ -3,55 +3,32 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav style={styles.navbar}>
-      <h1 style={styles.logo}>My App</h1>
-      <ul style={styles.navLinks}>
+    <nav className="navbar">
+      <h1 className="logo">My App</h1>
+      <ul className="nav-links">
         <li>
-          <Link to="/" style={styles.link}>
+          <Link to="/" className="nav-link">
             Home
           </Link>
         </li>
         <li>
-          <Link to="/login" style={styles.link}>
+          <Link to="/login" className="nav-link">
             Login
           </Link>
         </li>
         <li>
-          <Link to="/register" style={styles.link}>
+          <Link to="/register" className="nav-link">
             Register
           </Link>
         </li>
         <li>
-          <Link to="/admin/dashboard" style={styles.link}>
+          <Link to="/admin/dashboard" className="nav-link">
             Admin Dashboard
           </Link>
         </li>
       </ul>
     </nav>
   );
-};
-
-const styles = {
-  navbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: "10px 20px",
-    backgroundColor: "#333",
-    color: "#fff",
-  },
-  logo: {
-    fontSize: "24px",
-  },
-  navLinks: {
-    listStyle: "none",
-    display: "flex",
-    gap: "15px",
-  },
-  link: {
-    color: "#fff",
-    textDecoration: "none",
-  },
 };
 
 export default Navbar;
