@@ -14,36 +14,32 @@ const User = () => {
         email,
         password,
       });
-      setMessage(response.data.message);
-      console.log("Token:", response.data.token); // Save the token for future requests
+      localStorage.setItem("userToken", response.data.token); // Save the token
+      setMessage("Login successful!");
     } catch (error) {
       setMessage(error.response?.data?.message || "An error occurred");
     }
   };
 
   return (
-    <div className="user-container">
-      <h1 className="user-title">Login</h1>
-      <form onSubmit={handleLogin} className="user-form">
+    <div className="login-container">
+      <h1>Login</h1>
+      <form onSubmit={handleLogin}>
         <input
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="user-input"
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="user-input"
         />
-        <button type="submit" className="user-button">
-          Login
-        </button>
+        <button type="submit">Login</button>
       </form>
-      {message && <p className="user-message">{message}</p>}
+      {message && <p>{message}</p>}
     </div>
   );
 };

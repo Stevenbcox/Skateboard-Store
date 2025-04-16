@@ -9,8 +9,8 @@ import AdminLogin from "./pages/AdminLogin"; // Admin Login page
 import AdminDashboard from "./pages/AdminDashboard"; // Admin Dashboard page
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
 
-const App = () => {
-  return (
+createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
     <Router>
       <Navbar />
       <Routes>
@@ -28,7 +28,5 @@ const App = () => {
         />
       </Routes>
     </Router>
-  );
-};
-
-createRoot(document.getElementById("root")).render(<App />);
+  </React.StrictMode>
+);
