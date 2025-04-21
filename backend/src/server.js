@@ -1,15 +1,24 @@
 const express = require("express");
-const authRoutes = require("./routes/authRoutes"); // Import authRoutes
-const adminRoutes = require("./routes/adminRoutes"); // Import adminRoutes
+const cors = require("cors"); // Import cors
+const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const skateboardRoutes = require("./routes/skateboardRoutes");
 
 const app = express();
+
+// Enable CORS
+app.use(cors()); // Allow all origins by default
+
 app.use(express.json());
 
 // Use the auth routes
-app.use("/auth", authRoutes); // Routes for /auth/register and /auth/login
+app.use("/auth", authRoutes);
 
 // Use the admin routes
-app.use("/admin", adminRoutes); // Routes for /admin/dashboard
+app.use("/admin", adminRoutes);
+
+// Use the skateboard routes
+app.use("/api/skateboards", skateboardRoutes);
 
 // Start the server
 app.listen(5000, () => {

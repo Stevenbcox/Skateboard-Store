@@ -8,6 +8,8 @@ import User from "./pages/User"; // Login page
 import AdminLogin from "./pages/AdminLogin"; // Admin Login page
 import AdminDashboard from "./pages/AdminDashboard"; // Admin Dashboard page
 import ProtectedAdminRoute from "./components/ProtectedAdminRoute";
+import Skateboards from "./pages/Skateboards"; // Import Skateboards component
+
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -15,6 +17,7 @@ createRoot(document.getElementById("root")).render(
       <Navbar />
       <Routes>
         <Route path="/" element={<h1>Home Page</h1>} />
+        <Route path="/skateboards" element={<Skateboards />} />
         <Route path="/login" element={<User />} />
         <Route path="/register" element={<Register />} />
         <Route path="/admin/login" element={<AdminLogin />} />
