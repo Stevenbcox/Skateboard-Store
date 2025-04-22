@@ -14,6 +14,8 @@ app.use(express.json());
 // Use the auth routes
 app.use("/auth", authRoutes);
 
+app.use("/api", authRoutes);
+
 // Use the admin routes
 app.use("/admin", adminRoutes);
 

@@ -1,37 +1,46 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "../App.css"; // Import global styles if needed
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const token = localStorage.getItem("userToken");
+
+  const handleLogout = () => {
+    localStorage.removeItem("userToken"); // Remove token
+    navigate("/login"); // Redirect to login page
+  };
+
   return (
     <nav className="navbar">
-      <h1 className="logo">Steve's Skateboards</h1>
-      <ul className="nav-links">
-        <li>
-          <Link to="/" className="nav-link">
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/skateboards" className="nav-link">
-            Skateboards
-          </Link>
-        </li>
-        <li>
-          <Link to="/login" className="nav-link">
-            Login
-          </Link>
-        </li>
-        <li>
-          <Link to="/register" className="nav-link">
-            Register
-          </Link>
-        </li>
-        <li>
-          <Link to="/admin/login" className="nav-link">
-            Admin Login
-          </Link>
-        </li>
-      </ul>
+      <h1 className="logo">Steven's Skateboards</h1>
+      <div className="nav-buttons">
+        <Link to="/" className="nav-button">
+          Home
+        </Link>
+        <Link to="/skateboards" className="nav-button">
+          Skateboards
+        </Link>
+        {token ? (
+          <>
+            <Link to="/account" className="nav-button">
+              Account
+            </Link>
+            <button onClick={handleLogout} className="nav-button logout-button">
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="nav-button">
+              Login
+            </Link>
+            <Link to="/register" className="nav-button">
+              Register
+            </Link>
+          </>
+        )}
+      </div>
     </nav>
   );
 };
