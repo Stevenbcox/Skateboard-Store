@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../config";
 
 const SingleSkateboard = () => {
   const { id } = useParams(); // Get the skateboard ID from the URL
@@ -10,9 +11,7 @@ const SingleSkateboard = () => {
   useEffect(() => {
     const fetchSkateboard = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/skateboards/${id}`
-        );
+        const response = await axios.get(`${BASE_URL}/api/skateboards/${id}`);
         setSkateboard(response.data);
       } catch (err) {
         console.error(err);

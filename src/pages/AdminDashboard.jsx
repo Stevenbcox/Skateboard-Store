@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import BASE_URL from "../config";
 
 const AdminDashboard = () => {
   const [newSkateboard, setNewSkateboard] = useState({
@@ -23,7 +24,7 @@ const AdminDashboard = () => {
   const handleCreateSkateboard = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/skateboards", newSkateboard); // Removed 'response'
+      await axios.post(`${BASE_URL}/api/skateboards`, newSkateboard);
       setMessage("Skateboard created successfully!");
       setNewSkateboard({
         name: "",
@@ -39,11 +40,11 @@ const AdminDashboard = () => {
       setMessage("Failed to create skateboard.");
     }
   };
-  
+
   const handleDeleteSkateboard = async (e) => {
     e.preventDefault();
     try {
-      await axios.delete(`http://localhost:5000/api/skateboards/${deleteId}`); // Removed 'response'
+      await axios.delete(`${BASE_URL}/api/skateboards/${deleteId}`);
       setMessage("Skateboard deleted successfully!");
       setDeleteId("");
     } catch (err) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../config";
 
 const Account = () => {
   const [user, setUser] = useState(null); // Store user data
@@ -17,7 +18,7 @@ const Account = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:5000/api/account", {
+        const response = await axios.get(`${BASE_URL}/auth/account`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);
@@ -40,7 +41,7 @@ const Account = () => {
     try {
       const token = localStorage.getItem("userToken");
       await axios.put(
-        "http://localhost:5000/api/account/password",
+        `${BASE_URL}/auth/account/password`,
         { password: newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );

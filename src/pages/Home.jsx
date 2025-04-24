@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../config";
 
 const Home = () => {
   const [featuredSkateboards, setFeaturedSkateboards] = useState([]);
@@ -9,9 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchFeaturedSkateboards = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/skateboards"
-        );
+        const response = await axios.get(`${BASE_URL}/api/skateboards`);
         setFeaturedSkateboards(response.data.slice(0, 3)); // Limit to 3 featured skateboards
       } catch (err) {
         console.error("Error fetching skateboards:", err);

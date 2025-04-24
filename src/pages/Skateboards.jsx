@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import BASE_URL from "../config";
 
 const Skateboards = () => {
   const [skateboards, setSkateboards] = useState([]);
@@ -9,9 +10,7 @@ const Skateboards = () => {
   useEffect(() => {
     const fetchSkateboards = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/skateboards"
-        );
+        const response = await axios.get(`${BASE_URL}/api/skateboards`);
         setSkateboards(response.data);
       } catch (err) {
         setError("Failed to fetch skateboards");
