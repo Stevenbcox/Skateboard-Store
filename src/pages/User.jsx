@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import BASE_URL from "../config";
 
 const User = () => {
   const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ const User = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
+      const response = await axios.post(`${BASE_URL}/auth/login`, {
         email,
         password,
       });
