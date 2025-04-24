@@ -16,6 +16,11 @@ app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/api/skateboards", skateboardRoutes);
 
+app.use((err, req, res, next) => {
+  console.error("Unhandled error:", err);
+  res.status(500).json({ error: "Server error" });
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
