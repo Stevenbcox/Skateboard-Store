@@ -27,6 +27,15 @@ const Home = () => {
       <div className="hero-section">
         <h1>Welcome to Steven's Skateboards</h1>
         <p>Your one-stop shop for all your skateboarding needs!</p>
+        <p>
+          At Steven's Skateboards, we are passionate about providing
+          high-quality skateboards for skaters of all levels. Whether you're a
+          beginner looking for your first board or a seasoned pro searching for
+          the perfect deck, we've got you covered. Explore our wide range of
+          skateboards, accessories, and gear to take your skating to the next
+          level. Join our community of skaters and experience the thrill of the
+          ride!
+        </p>
         <Link to="/skateboards" className="cta-button">
           Shop Now
         </Link>
@@ -52,6 +61,15 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <footer className="footer">
+        <p>
+          This website is created for learning purposes as part of a capstone
+          project.
+          <Link to="/admin" className="admin-link">
+            Admin Login
+          </Link>
+        </p>
+      </footer>
     </div>
   );
 };

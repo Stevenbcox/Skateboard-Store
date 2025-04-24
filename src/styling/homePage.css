@@ -1,0 +1,45 @@
+/* Home Container */
+.home-container {
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    min-height: 100vh; /* Ensure the container takes up the full viewport height */
+    background: linear-gradient(to bottom, #333, #555);
+    color: #000000;
+    border-radius: 8px;
+}
+
+/* Main Content (Hero + Featured Section) */
+.hero-section,
+.featured-section {
+    flex: 1; /* Allow these sections to grow and take up available space */
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto; /* Push the footer to the bottom */
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.footer .admin-link {
+    color: #61dafb;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.footer .admin-link:hover {
+    text-decoration: underline;
+}

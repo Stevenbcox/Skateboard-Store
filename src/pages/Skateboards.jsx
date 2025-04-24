@@ -36,7 +36,7 @@ const Skateboards = () => {
               alt={skateboard.name}
               className="skateboard-image"
             />
-            <h2>{skateboard.name}</h2>
+            <h2>{skateboard.brand}</h2>
             <p>Price: ${Number(skateboard.price || 0).toFixed(2)}</p>
             <Link to={`/skateboards/${skateboard.id}`} className="view-details">
               View Details

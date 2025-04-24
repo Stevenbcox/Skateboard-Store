@@ -1,57 +1,61 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleAdminLogin = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-      const response = await axios.post("http://localhost:5000/auth/login", {
-        email,
+      const response = await axios.post("http://localhost:5000/api/admin/login", {
+        username,
         password,
       });
-
-      // Check if the user is an admin
-      if (response.data.token) {
-        const token = response.data.token;
-        const decodedToken = JSON.parse(atob(token.split(".")[1])); // Decode the JWT payload
-        if (decodedToken.is_admin) {
-          localStorage.setItem("adminToken", token); // Save the token for future requests
-          navigate("/admin/dashboard"); // Redirect to the admin dashboard
-        } else {
-          setMessage("Access denied: You are not an admin.");
-        }
+      if (response.data.success) {
+        // Redirect to admin dashboard
+        navigate("/admin/dashboard");
+      } else {
+        setError("Invalid username or password.");
       }
-    } catch (error) {
-      setMessage(error.response?.data?.message || "An error occurred");
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("An error occurred. Please try again.");
     }
   };
 
   return (
     <div className="admin-login-container">
       <h1>Admin Login</h1>
-      <form onSubmit={handleAdminLogin}>
-        <input
-          type="email"
-          placeholder="Admin Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
+      <form onSubmit={handleLogin}>
+        <div className="form-group">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        {error && <p className="error">{error}</p>}
+        <button type="submit" className="login-button">
+          Login
+        </button>
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 };

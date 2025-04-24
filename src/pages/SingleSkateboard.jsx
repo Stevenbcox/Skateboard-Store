@@ -41,9 +41,9 @@ const SingleSkateboard = () => {
             alt={skateboard.name || "Skateboard"}
             className="skateboard-image"
           />
-          <h1>{skateboard.name || "Unknown Skateboard"}</h1>
+          <h1>{skateboard.brand || "Unknown Skateboard"}</h1>
           <p>
-            <strong>Brand:</strong> {skateboard.brand || "N/A"}
+            <strong>type:</strong> {skateboard.name || "N/A"}
           </p>
           <p>
             <strong>Size:</strong> {skateboard.size || "N/A"}
