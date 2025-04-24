@@ -1,13 +1,44 @@
-# React + Vite
+# Steven's Skateboards
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Steven's Skateboards is a full-stack web application designed for skateboarding enthusiasts. The website allows users to browse and purchase skateboards, while providing an admin dashboard for managing skateboards in the inventory. This project was created as part of a capstone project to demonstrate skills in web development, including frontend, backend, and database integration.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## **Purpose and Functionality**
 
-## Expanding the ESLint configuration
+### **Purpose**
+The purpose of this website is to provide a platform for skateboarding enthusiasts to explore and purchase skateboards and accessories. It also includes an admin dashboard for managing the inventory, making it a complete e-commerce solution.
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Skateboard-Store
+### **Functionality**
+1. **User Features**:
+   - Browse a list of skateboards with images, descriptions, and prices.
+   - View detailed information about individual skateboards.
+   - Register and log in to a user account.
+   - Access account details and update passwords.
+
+2. **Admin Features**:
+   - Log in as an admin to access the admin dashboard.
+   - Create new skateboards by entering details such as name, brand, size, price, stock, and description.
+   - Delete skateboards from the inventory by entering their ID.
+
+3. **Responsive Design**:
+   - The website is fully responsive and works seamlessly on desktops, tablets, and mobile devices.
+
+4. **Learning Purpose**:
+   - This website was created for learning purposes as part of a capstone project.
+
+---
+
+## **Running the Website Locally**
+
+### **Prerequisites**
+- Node.js (v16 or higher)
+- PostgreSQL (v12 or higher)
+- npm (Node Package Manager)
+
+### **Steps to Run Locally**
+
+#### **1. Clone the Repository**
+```bash
+git clone https://github.com/your-username/stevens-skateboards.git
+cd stevens-skateboards
