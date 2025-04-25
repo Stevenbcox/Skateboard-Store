@@ -10,20 +10,20 @@
     justify-content: center;
 }
 
-.skateboard-card {
+.single-skateboard-card {
     border: 2px solid #ddd; /* Add a thicker border for better visibility */
     border-radius: 10px; /* Slightly round the corners */
     padding: 15px;
-    width: 400px; /* Adjust width for better layout */
-    background-color: #ffffff;
+    width: 97.3%; /* Adjust width for better layout */
+    background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
     text-align: center;
 }
 
 .skateboard-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhance hover effect */
+    /* Remove transform and box-shadow changes on hover */
+    transform: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Keep the same shadow as the default state */
 }
 
 .skateboard-image {
@@ -37,7 +37,7 @@
     display: block; /* Ensure proper centering */
 }
 
-.skateboard-description {
+.single-skateboard-description {
     margin-top: 15px; /* Add spacing between the image and description */
     text-align: left; /* Align text to the left */
     font-size: 16px; /* Adjust font size for readability */

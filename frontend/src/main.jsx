@@ -10,6 +10,7 @@ import "./styling/featuredSection.css";
 import "./styling/Skateboards.css";
 import "./styling/adminLogin.css";
 import "./styling/adminDashboard.css";
+import "./styling/singleSkateboard.css";
 
 
 import Navbar from "./pages/Navbar";
