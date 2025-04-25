@@ -6,13 +6,11 @@ const router = express.Router();
 // Get all skateboards
 router.get("/", async (req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT id, name, brand, size, price, stock, image_url FROM skateboards"
-    );
-    res.status(200).json(result.rows);
+    const result = await pool.query("SELECT * FROM skateboards");
+    res.json(result.rows);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).json({ error: "Server error" });
+    console.error("Error fetching skateboards:", err);
+    res.status(500).json({ error: "Failed to fetch skateboards" });
   }
 });
 

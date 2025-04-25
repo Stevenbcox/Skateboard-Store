@@ -4,7 +4,7 @@ const pool = new Pool({
   user: "stevencox",
   host: "localhost",
   database: "skateboard_store",
-  password: "Password1", // Update to the correct password
+  password: "Password1", 
   port: 5432,
 });
 

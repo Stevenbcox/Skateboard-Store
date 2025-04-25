@@ -8,12 +8,13 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-const corsOptions = {
-  origin: process.env.CLIENT_URL || "*", // Replace with your frontend's URL in production
-  methods: "GET,POST,PUT,DELETE",
-  credentials: true,
-};
-app.use(cors(corsOptions));
+// const corsOptions = {
+//   origin: process.env.CLIENT_URL || "*", // Replace with your frontend's URL in production
+//   methods: "GET,POST,PUT,DELETE",
+//   credentials: true,
+// };
+// app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 // Routes
