@@ -12,13 +12,14 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${
-            import.meta.env.VITE_BASE_URL
-          }/auth/register`, {
-        username,
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `${import.meta.env.VITE_BASE_URL}/auth/register`,
+        {
+          username,
+          email,
+          password,
+        }
+      );
       setMessage(response.data.message); // Display success message
       setError(""); // Clear error message
     } catch (error) {
