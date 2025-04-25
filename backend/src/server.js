@@ -8,7 +8,12 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: process.env.CLIENT_URL || "*", // Replace with your frontend's URL in production
+  methods: "GET,POST,PUT,DELETE",
+  credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Routes
@@ -16,13 +21,20 @@ app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/api/skateboards", skateboardRoutes);
 
+// Test route for debugging
+app.get("/test", (req, res) => {
+  res.send("Test route is working!");
+});
+
+// Root route
 app.get("/", (req, res) => {
   res.send("Welcome to the Skateboard Store API!");
 });
 
+// Error handling middleware
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err);
-  res.status(500).json({ error: "Server error" });
+  res.status(500).json({ error: err.message || "Server error" });
 });
 
 // Start the server
