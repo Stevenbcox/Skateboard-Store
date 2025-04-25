@@ -16,6 +16,10 @@ app.use("/auth", authRoutes);
 app.use("/admin", adminRoutes);
 app.use("/api/skateboards", skateboardRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Skateboard Store API!");
+});
+
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err);
   res.status(500).json({ error: "Server error" });
