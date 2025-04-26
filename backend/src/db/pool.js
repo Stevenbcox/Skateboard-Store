@@ -1,12 +1,22 @@
 const { Pool } = require("pg");
 
-const pool = new Pool({
-  user: process.env.DB_USER || "stevencox",
-  host: process.env.DB_HOST || "localhost",
-  database: process.env.DB_NAME || "skateboard_store",
-  password: process.env.DB_PASSWORD || "Password1",
-  port: process.env.DB_PORT || 5432,
-  ssl: process.env.DB_SSL === "true" ? { rejectUnauthorized: false } : false, // Enable SSL for Render
-});
+let pool;
+
+if (process.env.DATABASE_URL) {
+  // If DATABASE_URL exists (on Render)
+  pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: { rejectUnauthorized: false },
+  });
+} else {
+  // Otherwise, use local development settings
+  pool = new Pool({
+    user: process.env.DB_USER || "stevencox",
+    host: process.env.DB_HOST || "localhost",
+    database: process.env.DB_NAME || "skateboard_store",
+    password: process.env.DB_PASSWORD || "Password1",
+    port: process.env.DB_PORT || 5432,
+  });
+}
 
 module.exports = pool;
