@@ -6,6 +6,7 @@ const skateboardRoutes = require("./routes/skateboardRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+const pool = require("./db/pool");
 
 // Middleware
 // const corsOptions = {
@@ -35,6 +36,16 @@ app.get("/", (req, res) => {
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err);
   res.status(500).json({ error: err.message || "Server error" });
+});
+
+app.get("/test-db", async (req, res) => {
+  try {
+    const result = await pool.query("SELECT 1 + 1 AS result");
+    res.json({ success: true, result: result.rows[0] });
+  } catch (err) {
+    console.error("Database connection failed:", err);
+    res.status(500).json({ error: "Database connection failed" });
+  }
 });
 
 // Start the server
