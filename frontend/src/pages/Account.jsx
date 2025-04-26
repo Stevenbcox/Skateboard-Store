@@ -18,7 +18,7 @@ const Account = () => {
         }
 
         const response = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/auth/account`,
+          `https://skateboard-store-2.onrender.com/auth/account`,
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -43,7 +43,7 @@ const Account = () => {
     try {
       const token = localStorage.getItem("userToken");
       await axios.put(
-        `${import.meta.env.VITE_BASE_URL}/auth/account/password`,
+        `https://skateboard-store-2.onrender.com/auth/account/password`,
         { password: newPassword },
         { headers: { Authorization: `Bearer ${token}` } }
       );

@@ -24,7 +24,7 @@ const AdminDashboard = () => {
     e.preventDefault();
     try {
       await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/api/skateboards`,
+        `https://skateboard-store-2.onrender.com/api/skateboards`,
         newSkateboard
       );
       setMessage("Skateboard created successfully!");
@@ -47,7 +47,7 @@ const AdminDashboard = () => {
     e.preventDefault();
     try {
       await axios.delete(
-        `${import.meta.env.VITE_BASE_URL}/api/skateboards/${deleteId}`
+        `https://skateboard-store-2.onrender.com/api/skateboards/${deleteId}`
       );
       setMessage("Skateboard deleted successfully!");
       setDeleteId("");

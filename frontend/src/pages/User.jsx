@@ -11,7 +11,7 @@ const User = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/auth/login`,
+        `https://skateboard-store-2.onrender.com/auth/login`,
         {
           email,
           password,

@@ -10,7 +10,7 @@ const Home = () => {
     const fetchFeaturedSkateboards = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BASE_URL}/api/skateboards`
+          `https://skateboard-store-2.onrender.com/api/skateboards`
         );
         setFeaturedSkateboards(response.data.slice(0, 3)); // Limit to 3 featured skateboards
       } catch (err) {
