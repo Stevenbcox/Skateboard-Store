@@ -11,12 +11,9 @@ const pool = require("./db/pool");
 
 // Middleware
 const corsOptions = {
-  origin: [
-    "https://stevensskateboards.netlify.app", // Production frontend
-    "http://localhost:5173", // Development frontend
-  ],
+  origin: "*", // Allow all origins
   methods: "GET,POST,PUT,DELETE",
-  credentials: true, // Allow cookies and credentials
+  credentials: true,
 };
 
 app.use(cors(corsOptions));
