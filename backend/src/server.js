@@ -18,8 +18,13 @@ const pool = require("./db/pool");
 app.use(express.json());
 
 // Routes
+console.log("Registering /auth routes...");
 app.use("/auth", authRoutes);
+
+console.log("Registering /admin routes...");
 app.use("/admin", adminRoutes);
+
+console.log("Registering /api/skateboards routes...");
 app.use("/api/skateboards", skateboardRoutes);
 
 // Test route for debugging

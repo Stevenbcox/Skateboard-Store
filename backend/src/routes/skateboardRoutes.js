@@ -6,9 +6,7 @@ const router = express.Router();
 // Get all skateboards
 router.get("/", async (req, res) => {
   try {
-    console.log("Fetching skateboards...");
     const result = await pool.query("SELECT * FROM skateboards");
-    console.log("Skateboards fetched:", result.rows);
     res.json(result.rows);
   } catch (err) {
     console.error("Error fetching skateboards:", err);
