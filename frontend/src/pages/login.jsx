@@ -19,7 +19,10 @@ const Login = () => {
       window.location.reload(); // Reload the page to update the navbar
     } catch (err) {
       setMessage("Error logging in. Please check your credentials.");
-      console.error("Error logging in user:", err.response?.data || err.message);
+      console.error(
+        "Error logging in user:",
+        err.response?.data || err.message
+      );
     }
   };
 

@@ -41,18 +41,24 @@ router.post("/login", async (req, res) => {
   try {
     // Check if the user exists
     const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+    console.log("User fetched from database:", user.rows);
+
     if (user.rows.length === 0) {
       return res.status(400).json({ error: "Invalid email or password" });
     }
 
     // Compare the password
     const isMatch = await bcrypt.compare(password, user.rows[0].password_hash);
+    console.log("Hashed password:", user.rows[0].password_hash);
+    console.log("Password comparison result:", isMatch);
+
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid email or password" });
     }
 
     // Generate a JWT token
     const token = jwt.sign({ id: user.rows[0].id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+    console.log("Generated JWT token:", token);
 
     res.json({ message: "Login successful", token });
   } catch (err) {
