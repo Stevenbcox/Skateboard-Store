@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // Create an Axios instance with a base URL
-const API = axios.create({ baseURL: `https://skateboard-store.onrender.com/api` });
+const API = axios.create({ baseURL: `https://skateboard-store-2.onrender.com//api` });
 
 // Add an interceptor to include the token in every request
 API.interceptors.request.use((req) => {

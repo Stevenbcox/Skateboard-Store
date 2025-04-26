@@ -4,13 +4,14 @@ const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const skateboardRoutes = require("./routes/skateboardRoutes");
 
+require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const pool = require("./db/pool");
 
 // Middleware
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "*", // Replace with your frontend's URL in production
+  origin: process.env.CLIENT_URL || "https://stevensskateboards.netlify.app/", 
   methods: "GET,POST,PUT,DELETE",
   credentials: true,
 };
