@@ -17,6 +17,8 @@ const pool = require("./db/pool");
 // app.use(cors(corsOptions));
 app.use(express.json());
 
+console.log("Database URL:", process.env.DATABASE_URL);
+
 // Routes
 console.log("Registering /auth routes...");
 app.use("/auth", authRoutes);
