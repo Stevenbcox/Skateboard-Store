@@ -12,12 +12,13 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`${
-        import.meta.env.VITE_BASE_URL
-      }/auth/login`, {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        `https://skateboard-store-2.onrender.com/auth/login`,
+        {
+          email,
+          password,
+        }
+      );
       localStorage.setItem("userToken", response.data.token); // Save the token
       setMessage("Login successful!");
       navigate("/"); // Redirect to the homepage after login

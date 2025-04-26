@@ -12,9 +12,7 @@ const SingleSkateboard = () => {
     const fetchSkateboard = async () => {
       try {
         const response = await axios.get(
-          `${
-            import.meta.env.VITE_BASE_URL
-          }/api/skateboards/${id}`
+          `https://skateboard-store-2.onrender.com/api/skateboards/${id}`
         );
         setSkateboard(response.data);
       } catch (err) {
@@ -39,13 +37,19 @@ const SingleSkateboard = () => {
       <div className="navbar"> {/* Navbar remains unchanged */}</div>
       <main className="main-container">
         <div className="single-skateboard-container">
-          <div className="single-skateboard-card"> {/* Add this wrapper */}
+          <div className="single-skateboard-card">
+            {" "}
+            {/* Add this wrapper */}
             <img
-              src={skateboard.image_url || "https://via.placeholder.com/300x300"}
+              src={
+                skateboard.image_url || "https://via.placeholder.com/300x300"
+              }
               alt={skateboard.name || "Skateboard"}
               className="skateboard-image"
             />
-            <div className="single-skateboard-description"> {/* Wrap details in this div */}
+            <div className="single-skateboard-description">
+              {" "}
+              {/* Wrap details in this div */}
               <h1>{skateboard.brand || "Unknown Skateboard"}</h1>
               <p>
                 <strong>type:</strong> {skateboard.name || "N/A"}
@@ -54,7 +58,8 @@ const SingleSkateboard = () => {
                 <strong>Size:</strong> {skateboard.size || "N/A"}
               </p>
               <p>
-                <strong>Price:</strong> ${Number(skateboard.price || 0).toFixed(2)}
+                <strong>Price:</strong> $
+                {Number(skateboard.price || 0).toFixed(2)}
               </p>
               <p>
                 <strong>Stock:</strong> {skateboard.stock || "N/A"}

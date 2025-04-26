@@ -13,7 +13,7 @@ const Register = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BASE_URL}/auth/register`,
+        `https://skateboard-store-2.onrender.com/auth/register`,
         {
           username,
           email,
