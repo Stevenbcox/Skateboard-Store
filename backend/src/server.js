@@ -3,18 +3,14 @@ const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const skateboardRoutes = require("./routes/skateboardRoutes");
+const authenticateToken = require("./middleware/authMiddleware");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 const pool = require("./db/pool");
 
 // Middleware
-// const corsOptions = {
-//   origin: process.env.CLIENT_URL || "*", // Replace with your frontend's URL in production
-//   methods: "GET,POST,PUT,DELETE",
-//   credentials: true,
-// };
-// app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 
 console.log("Database URL:", process.env.DATABASE_URL);
@@ -24,7 +20,7 @@ console.log("Registering /auth routes...");
 app.use("/auth", authRoutes);
 
 console.log("Registering /admin routes...");
-app.use("/admin", adminRoutes);
+app.use("/admin", authenticateToken, adminRoutes); // Protect admin routes
 
 console.log("Registering /api/skateboards routes...");
 app.use("/api/skateboards", skateboardRoutes);
@@ -43,16 +39,6 @@ app.get("/", (req, res) => {
 app.use((err, req, res, next) => {
   console.error("Unhandled error:", err);
   res.status(500).json({ error: err.message || "Server error" });
-});
-
-app.get("/test-db", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT 1 + 1 AS result");
-    res.json({ success: true, result: result.rows[0] });
-  } catch (err) {
-    console.error("Database connection failed:", err);
-    res.status(500).json({ error: "Database connection failed" });
-  }
 });
 
 // Start the server
