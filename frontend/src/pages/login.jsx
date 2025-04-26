@@ -1,49 +1,57 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
+  const loginUser = async (credentials) => {
     try {
       const response = await axios.post(
-        `https://skateboard-store-2.onrender.com/auth/login`,
-        {
-          email,
-          password,
-        }
+        "https://skateboard-store-2.onrender.com/auth/login",
+        credentials
       );
-      localStorage.setItem("userToken", response.data.token); // Save the token
       setMessage("Login successful!");
-      navigate("/"); // Redirect to the homepage after login
-    } catch (error) {
-      setMessage(error.response?.data?.message || "An error occurred");
+      console.log("Login successful:", response.data);
+      // Save the token to localStorage or state
+      localStorage.setItem("token", response.data.token);
+    } catch (err) {
+      setMessage("Error logging in. Please check your credentials.");
+      console.error("Error logging in user:", err.response?.data || err.message);
     }
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginUser(formData);
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   return (
-    <div className="auth-container">
+    <div>
       <h1>Login</h1>
-      {message && <p className="message">{message}</p>}
-      <form onSubmit={handleLogin}>
+      {message && <p>{message}</p>}
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
+          name="email"
           placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleChange}
           required
         />
         <input
           type="password"
+          name="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={formData.password}
+          onChange={handleChange}
           required
         />
         <button type="submit">Login</button>
