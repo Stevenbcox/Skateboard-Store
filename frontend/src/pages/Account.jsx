@@ -11,7 +11,8 @@ const Account = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const token = localStorage.getItem("userToken");
+        const token = localStorage.getItem("token"); // Retrieve token
+        console.log("Token in Account.jsx:", token); // Debug log
         if (!token) {
           navigate("/login"); // Redirect to login if not logged in
           return;
@@ -23,11 +24,12 @@ const Account = () => {
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        console.log("User data fetched:", response.data); // Debug log
         setUser(response.data);
       } catch (err) {
         console.error("Error fetching user data:", err);
-        if (err.response && err.response.status === 404) {
-          setMessage("User not found. Please log in again.");
+        if (err.response && err.response.status === 401) {
+          setMessage("Unauthorized. Please log in again.");
           navigate("/login");
         } else {
           setMessage("An error occurred. Please try again later.");
@@ -41,7 +43,7 @@ const Account = () => {
   const handlePasswordChange = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("userToken");
+      const token = localStorage.getItem("token"); // Retrieve token
       await axios.put(
         `https://skateboard-store-2.onrender.com/auth/account/password`,
         { password: newPassword },

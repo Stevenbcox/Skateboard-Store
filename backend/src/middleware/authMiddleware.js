@@ -5,22 +5,20 @@ const JWT_SECRET = process.env.JWT_SECRET || "your_default_jwt_secret_key";
 
 // Middleware to verify JWT
 const verifyToken = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ message: "Unauthorized: No token provided" });
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
   }
 
-  const token = authHeader.split(" ")[1];
-
-  try {
-    const decoded = jwt.verify(token, JWT_SECRET);
-    req.user = decoded; // Attach decoded token payload to the request object
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    req.user = user;
     next();
-  } catch (err) {
-    console.error("JWT verification failed:", err.message);
-    res.status(401).json({ message: "Unauthorized: Invalid token" });
-  }
+  });
 };
 
 // Middleware to check if the user is an admin

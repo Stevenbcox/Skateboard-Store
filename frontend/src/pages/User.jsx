@@ -26,7 +26,7 @@ const User = () => {
 
   return (
     <div className="login-container">
-      <h1>Login</h1>
+      <h1>Logn</h1>
       <form onSubmit={handleLogin}>
         <input
           type="email"
