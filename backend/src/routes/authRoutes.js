@@ -12,15 +12,6 @@ router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
 
   try {
-    // Check if the user already exists
-    const userExists = await pool.query(
-      "SELECT * FROM users WHERE email = $1",
-      [email]
-    );
-    if (userExists.rows.length > 0) {
-      return res.status(400).json({ error: "User already exists" });
-    }
-
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -30,14 +21,12 @@ router.post("/register", async (req, res) => {
       [username, email, hashedPassword]
     );
 
-    res
-      .status(201)
-      .json({ message: "User registered successfully", user: result.rows[0] });
+    res.status(201).json({ message: "User registered successfully", user: result.rows[0] });
   } catch (err) {
     console.error("Error registering user:", err);
     res.status(500).json({ message: "Server error" });
   }
-});Z
+});
 
 // Login endpoint
 router.post("/login", async (req, res) => {
