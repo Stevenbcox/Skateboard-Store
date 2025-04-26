@@ -2,11 +2,11 @@ const { Pool } = require("pg");
 
 // PostgreSQL connection configuration
 const pool = new Pool({
-  user: "stevencox",
-  host: "localhost",
-  database: "skateboard_store",
-  password: "Password1", // Update to the correct password
-  port: 5432,
+  user: process.env.DB_USER || "stevencox",
+  host: process.env.DB_HOST || "localhost",
+  database: process.env.DB_NAME || "skateboard_store",
+  password: process.env.DB_PASSWORD || "Password1",
+  port: process.env.DB_PORT || 5432,
 });
 
 // Middleware to check if the user is an admin
