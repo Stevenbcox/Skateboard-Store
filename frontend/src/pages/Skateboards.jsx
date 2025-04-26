@@ -9,13 +9,14 @@ const Skateboards = () => {
   useEffect(() => {
     const fetchSkateboards = async () => {
       try {
+        // Fetch skateboards from the API
         const response = await axios.get(
           `https://skateboard-store-2.onrender.com/api/skateboards`
         );
-        setSkateboards(response.data);
+        setSkateboards(response.data); // Set the skateboards data
       } catch (err) {
-        setError("Failed to fetch skateboards");
-        console.error(err);
+        setError("Failed to fetch skateboards. Please try again later.");
+        console.error("Error fetching skateboards:", err);
       }
     };
 
@@ -24,8 +25,7 @@ const Skateboards = () => {
 
   return (
     <div className="skateboards-container">
-      <h1>Available Skateboards</h1>
-      {error && <p className="error">{error}</p>}
+      <h1>Available Skate
       <div className="skateboards-list">
         {skateboards.map((skateboard) => (
           <div key={skateboard.id} className="skateboard-card">
