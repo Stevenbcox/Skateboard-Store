@@ -10,7 +10,7 @@ const Skateboards = () => {
     const fetchSkateboards = async () => {
       try {
         const response = await axios.get(
-          `https://skateboard-store.onrender.com/api/skateboards`
+          `https://skateboard-store-2.onrender.com/api/skateboards`
         );
         setSkateboards(response.data);
       } catch (err) {
