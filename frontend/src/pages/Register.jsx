@@ -15,8 +15,9 @@ const Register = () => {
         "https://skateboard-store-2.onrender.com/auth/register",
         userData
       );
+      localStorage.setItem("token", response.data.token); // Save the token
       setMessage("Registration successful!");
-      console.log("Registration successful:", response.data);
+      window.location.reload(); // Reload the page to update the navbar
     } catch (err) {
       setMessage("Error registering user. Please try again.");
       console.error("Error registering user:", err.response?.data || err.message);

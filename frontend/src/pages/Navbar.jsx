@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../App.css"; // Import global styles if needed
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
-  const token = localStorage.getItem("userToken");
+
+  useEffect(() => {
+    // Check if the user is logged in by checking for a token
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token); // Set to true if token exists, false otherwise
+  }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("userToken"); // Remove token
+    localStorage.removeItem("token"); // Remove token
+    setIsLoggedIn(false); // Update state
     navigate("/login"); // Redirect to login page
   };
 
@@ -21,7 +28,7 @@ const Navbar = () => {
         <Link to="/skateboards" className="nav-button">
           Skateboards
         </Link>
-        {token ? (
+        {isLoggedIn ? (
           <>
             <Link to="/account" className="nav-button">
               Account

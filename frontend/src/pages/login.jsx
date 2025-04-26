@@ -14,10 +14,9 @@ const Login = () => {
         "https://skateboard-store-2.onrender.com/auth/login",
         credentials
       );
+      localStorage.setItem("token", response.data.token); // Save the token
       setMessage("Login successful!");
-      console.log("Login successful:", response.data);
-      // Save the token to localStorage or state
-      localStorage.setItem("token", response.data.token);
+      window.location.reload(); // Reload the page to update the navbar
     } catch (err) {
       setMessage("Error logging in. Please check your credentials.");
       console.error("Error logging in user:", err.response?.data || err.message);
