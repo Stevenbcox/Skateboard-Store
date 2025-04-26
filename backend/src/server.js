@@ -11,10 +11,14 @@ const pool = require("./db/pool");
 
 // Middleware
 const corsOptions = {
-  origin: process.env.CLIENT_URL || "https://stevensskateboards.netlify.app/", 
+  origin: [
+    "https://stevensskateboards.netlify.app", // Production frontend
+    "http://localhost:5173", // Development frontend
+  ],
   methods: "GET,POST,PUT,DELETE",
-  credentials: true,
+  credentials: true, // Allow cookies and credentials
 };
+
 app.use(cors(corsOptions));
 app.use(express.json());
 
