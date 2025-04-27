@@ -41,17 +41,17 @@
     margin-top: 15px; /* Add spacing between the image and description */
     text-align: left; /* Align text to the left */
     font-size: 16px; /* Adjust font size for readability */
-    color: #555; /* Use a subtle color for the text */
+    color: #000000; /* Use a subtle color for the text */
 }
 
 .skateboard-card h2 {
     font-size: 22px; /* Slightly larger font for the title */
     margin-bottom: 10px;
-    color: #333;
+    color: #000000;
 }
 
 .skateboard-card p {
     margin: 5px 0;
     font-size: 16px; /* Slightly larger font for details */
-    color: #555;
+    color: #000000;
 }

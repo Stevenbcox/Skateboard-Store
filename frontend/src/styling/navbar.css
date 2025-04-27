@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #464646;
+    background-color: #2c2c2c;
     padding: 10px 30px;
     border-radius: 8px;
     margin-bottom: 10px;
@@ -17,7 +17,7 @@
   .nav-button,
   .logout-button {
     padding: 10px 20px;
-    background-color: #aa6868;
+    background-color: #9246f7;
     color: rgb(255, 255, 255);
     border: none;
     border-radius: 4px;
@@ -28,9 +28,9 @@
   
   .nav-button:hover,
   .logout-button:hover {
-    background-color: #777;
+    background-color: #7e7e7e;
   }
   
   .logout-button:hover {
-    background-color: #c0392b; /* overrides hover for logout */
+    background-color: #ff0000; /* overrides hover for logout */
   }

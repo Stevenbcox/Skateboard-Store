@@ -63,7 +63,7 @@ const Account = () => {
 
   return (
     <div className="account-container">
-      <h1>Account Page</h1>
+      <h1>Account Details</h1>
       <p>
         <strong>Username:</strong> {user.username}
       </p>

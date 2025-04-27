@@ -2,8 +2,10 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background-color: #d8a9a9;
-  color: #333;
+  background: linear-gradient(135deg, #153677, #4e085f); /* Use 'background' instead of 'background-color' */
+  background-attachment: fixed; /* Optional: Makes the background fixed while scrolling */
+  background-size: cover; /* Ensures the gradient covers the entire viewport */
+  color: #000000;
 }
 
 #root {
@@ -55,6 +57,7 @@ body {
   background-color: #333;
   border: none;
   border-radius: 4px;
+  width: auto;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
@@ -148,7 +151,7 @@ body {
   max-width: 400px;
   margin: 20px auto;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #ffffff;
   border-radius: 8px;
   background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -158,6 +161,7 @@ body {
   font-size: 24px;
   margin-bottom: 20px;
   text-align: center;
+  color: #000000;
 }
 
 .account-container p {
@@ -177,6 +181,7 @@ body {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  width: auto;
 }
 
 .password-form button {
@@ -201,9 +206,21 @@ body {
 }
 
 /* Responsive design */
+
+/* For tablets and smaller screens */
 @media (max-width: 768px) {
+  body {
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .auth-container,
+  .account-container {
+    max-width: 90%; /* Reduce container width */
+    padding: 15px;
+  }
+
   .nav-links {
-    flex-direction: column;
+    flex-direction: column; /* Stack navigation links vertically */
     gap: 10px;
   }
 
@@ -214,5 +231,27 @@ body {
 
   .skateboard-card {
     width: 90%; /* Make cards full-width on smaller screens */
+  }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+  body {
+    font-size: 12px; /* Further reduce font size */
+  }
+
+  .auth-container h1,
+  .account-container h1 {
+    font-size: 20px; /* Adjust heading size */
+  }
+
+  .auth-container input,
+  .password-form input {
+    font-size: 14px; /* Adjust input font size */
+  }
+
+  .auth-container button,
+  .password-form button {
+    font-size: 14px; /* Adjust button font size */
   }
 }
